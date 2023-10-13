@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  {% load cart %}
+<head>
+    <!-- query data -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="/static/css/client.css">
+</head>
+<body>
+    <header class="header" style="background-color:;width: 100%;">
+        <div class="container-fluid" style="">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo">
+                        <a href="{% url 'indexpage' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7" style="background-color:;">
+                    <nav class="header__menu" style="background-color:;">
+                        <ul style="color: white;background-color:;" >
+                            <li class="active" style="color: white;"><a href="{% url 'indexpage' %}" style="">Home</a></li>
+                          
+                            {% for i in b %}
+                            <li style="color: white;"><a href="{% url 'product' %}?qry={{i.id}}" style="">{{i.name}}</a></li>
+                            {% endfor %}     
+                            
+                            <!-- <li><a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li><a href="./product-details.html">Product Details</a></li>
+                                    <li><a href="./shop-cart.html">Shop Cart</a></li>
+                                    <li><a href="./checkout.html">Checkout</a></li>
+                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                </ul>
+                            </li> -->
+                            <!-- <li><a href="./blog.html">Blog</a></li> -->
+                            <li style="color: white;"><a href="{% url 'contact' %}" style="color:;">Contact</a></li>
+                            {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'logout' %}" style="color: white;">logout</a></li>
+                            {% else %}
+                            <li style="color: white;">  <a href="{% url 'login' %}" style="color:;">login</a></li>
+                            <li style="color: white;"><a href="{% url 'signup' %}" style="color:;">signup</a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__right">
+                        <div class="header__right__auth">
+                            <!-- <a href="#">Login</a>
+                            <a href="#">Register</a> -->
+                        </div>
+                        <ul class="header__right__widget">
+                            <li><span class="icon_search search-switch" style=""></span></li>
+                            <!-- <li><a href="#"><span class="icon_heart_alt" style="color: white;"></span> -->
+                                
+                            </a></li>
+                            <li><a href="{% url 'cart' %}"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16" style="">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                              </svg>
+                                <div class="tip">{{request.session.cart.keys|length}}</div>
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <div class="login-box" style="margin-top: -25%;">
+  <h2 style="margin-top: 1px;">LOGIN</h2>
+  <form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div class="user-box">
+      <input type="text" name="username" required="">
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+      <input type="text" name="password" required="">
+      <label>Password</label>
+    </div>
+
+  <a href="">  <button href="#" type="submit" class=" " style="background-color: transparent;border: none;"> 
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      LOGIN
+    </button>
+    
+</a>
+  </form>
+  <a href="{% url 'reset_password' %}" style="color: white;margin-left: 60%;">forget password?</a>
+</div>
+<footer class="footer" style="background-color: black;margin-top:480px ;">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-7">
+              <div class="footer__about">
+                  <div class="footer__logo">
+                      <a href="./index.html"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                  </div>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                  cilisis.</p>
+                  <div class="footer__payment">
+                      <a href="#"><img src="img/payment/payment-1.png" alt=""></a>
+                      <a href="#"><img src="img/payment/payment-2.png" alt=""></a>
+                      <a href="#"><img src="img/payment/payment-3.png" alt=""></a>
+                      <a href="#"><img src="img/payment/payment-4.png" alt=""></a>
+                      <a href="#"><img src="img/payment/payment-5.png" alt=""></a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-5">
+              <div class="footer__widget">
+                  <h6>Quick links</h6>
+                  <ul>
+                      <li><a href="#">About</a></li>
+                      <li><a href="#">Blogs</a></li>
+                      <li><a href="#">Contact</a></li>
+                      <li><a href="#">FAQ</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4">
+              <div class="footer__widget">
+                  <h6>Account</h6>
+                  <ul>
+                      <li><a href="#">My Account</a></li>
+                      <li><a href="#">Orders Tracking</a></li>
+                      <li><a href="#">Checkout</a></li>
+                      <li><a href="#">Wishlist</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-8 col-sm-8">
+              <div class="footer__newslatter">
+                  <h6>NEWSLETTER</h6>
+                  <form action="#">
+                      <input type="text" placeholder="Email">
+                      <button type="submit" class="site-btn">Subscribe</button>
+                  </form>
+                  <div class="footer__social">
+                      <a href="#"><i class="fa fa-facebook"></i></a>
+                      <a href="#"><i class="fa fa-twitter"></i></a>
+                      <a href="#"><i class="fa fa-youtube-play"></i></a>
+                      <a href="#"><i class="fa fa-instagram"></i></a>
+                      <a href="#"><i class="fa fa-pinterest"></i></a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-12">
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              <div class="footer__copyright__text">
+                  <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+              </div>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </div>
+      </div>
+  </div>
+</footer>
+<!-- Footer Section End -->
+
+<!-- Search Begin -->
+<div class="search-model">
+  <div class="h-100 d-flex align-items-center justify-content-center">
+      <div class="search-close-switch">+</div>
+      <form class="search-model-form">
+          <input type="text" id="search-input" placeholder="Search here.....">
+      </form>
+  </div>
+</div>
+<!-- Search End -->
+
+<!-- Js Plugins -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'js/mixitup.min.js' %}"></script>
+<script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'js/jquery.slicknav.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.nicescroll.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

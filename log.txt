@@ -1,0 +1,12 @@
+WARNING:root:warning messgae
+WARNING:root:warning messgae
+WARNING:root:warning messgae
+WARNING:root:warning messgae
+DEBUG:root:abcdefgh
+DEBUG:root:abcdefgh
+WARNING:root:warning messgae
+ERROR:root:cjdkssdkj
+NoneType: None
+WARNING:root:warning messgae
+ERROR:root:cjdkssdkj
+NoneType: None
